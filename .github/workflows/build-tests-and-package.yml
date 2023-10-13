@@ -11,7 +11,7 @@ on:
 
 jobs:
   build-and-tests:
-    if: github.event.pull_request.merged == false || github.event.pull_request.state == opened
+    if: github.event.pull_request.merged == false || github.event.pull_request.state == 'opened'
     runs-on: ubuntu-latest
 
     steps:
