@@ -8,6 +8,7 @@ on:
 
 jobs:
   build-and-tests:
+    if: github.event.pull_request.merged == false
     runs-on: ubuntu-latest
 
     steps:
@@ -26,6 +27,9 @@ jobs:
   build-and-package:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
 
     steps:
     - name: Checkout repository
@@ -36,14 +40,8 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
-        server-id: github
-        settings-path: ${{ github.workspace }}
-        cache: maven
-
-    - name: Build JAR
-      run: mvn clean package
 
     - name: Publish to GitHub Packages Apache Maven
-      run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
+      run: mvn --batch-mode deploy
       env:
-        GITHUB_TOKEN: ${{ github.token }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
