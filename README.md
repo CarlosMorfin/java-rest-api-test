@@ -23,3 +23,4 @@ No, ya que los jobs se ejecutan en eventos diferentes y
 2. **¿Es posible desplegar automáticamente el artefacto guardado en Packages con Github Actions?**
 3. **¿Qué modificaciones consideras que se tendrían que realizar a los workflows para trabajar con imágenes de contenedores, siguiendo las mejores prácticas que conozcas?**
 4. **¿Qué pasos y/o herramientas utilizarías para entender las plantillas de Cloudformation y evaluar que ajustes se tendrían que realizar a la etapa de despliegue?**
+jd
