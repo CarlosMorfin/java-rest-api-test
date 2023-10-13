@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - main
+    types: [opened, reopened, closed]
 
 jobs:
   build-and-tests:
@@ -21,3 +22,28 @@ jobs:
 
     - name: Build with Maven
       run: mvn --batch-mode --update-snapshots verify
+
+  build-and-package:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Java
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        server-id: github
+        settings-path: ${{ github.workspace }}
+        cache: maven
+
+    - name: Build JAR
+      run: mvn clean package
+
+    - name: Publish to GitHub Packages Apache Maven
+      run: mvn --batch-mode deploy
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
