@@ -8,6 +8,7 @@ on:
 
 jobs:
   build-and-tests:
+    if: github.event.pull_request.merged == false
     runs-on: ubuntu-latest
 
     steps:
@@ -39,9 +40,6 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
-
-    - name: Build JAR
-      run: mvn clean package
 
     - name: Publish to GitHub Packages Apache Maven
       run: mvn --batch-mode deploy
