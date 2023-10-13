@@ -30,7 +30,7 @@ class HelloControllerIntTest {
     @Test
     public void pruebaSaludoConNombre() throws Exception {
         mvc.perform(get("/saludo?nombre=Sanpy"))
-                .andExpect(content().string("Hola, Sanpy"));
+                .andExpect(content().string("Hola, Sanp3"));
     }
 }
 
