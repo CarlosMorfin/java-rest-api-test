@@ -12,18 +12,24 @@
 
 5. **Segundo Job (build-and-package):** Este trabajo se ejecuta solo cuando se fusiona un pull request en la rama principal. Su tarea principal es construir el archivo JAR de la aplicación y almacenarlo en los paquetes de GitHub.
 
-6. **Configuración del archivo pom.xml:** En el archivo pom.xml, configuré la URL del repositorio de GitHub Packages de una manera más dinámica. En lugar de incluir directamente el nombre de usuario "CarlosMorfin", utilicé la variable ${env.GITHUB_ACTOR} para representar dinámicamente al usuario u organización que ejecuta el flujo de trabajo. Esto permite una configuración más flexible y reutilizable.
+6. **Configuración del archivo pom.xml:** En el archivo pom.xml, configuré la URL del repositorio de GitHub Packages de una manera más dinámica. En lugar de incluir directamente el nombre de usuario "CarlosMorfin", utilicé la variable ${env.GITHUB_ACTOR} para construir la url dinámicamente donde se depositaria el jar del build. Esto permite una configuración más flexible y reutilizable.
 
-7. **Lectura Adicional de la Documentación:** Cuando me encontré con la necesidad de ajustar la configuración en el archivo pom.xml, profundicé en la documentación de GitHub Actions. Esto me ayudó a comprender las variables predeterminadas de GitHub que pueden utilizarse para configurar el archivo de manera más eficiente.
+7. **Lectura Adicional de la Documentación:** Cuando me encontré con la necesidad de ajustar la configuración en el archivo pom.xml, profundicé en la documentación de GitHub Actions, lo cual me ayudó a comprender las variables predeterminadas de GitHub que pueden utilizarse para configurar el archivo de manera más eficiente.
 
 ### Preguntas de la practica y sus respuestas:
 
 1. **¿Consideras útil agrega la acción de caché al workflow?**
-Considero que no, ya que en este caso en los dos jobs es necesario ejecutar las pruebas y es necesario el build pero los jobs se ejecutan en eventos diferentes y tendria que tener en cache los builds por el rango de tienpo entre el pull request y el merge.
+Sí, es útil agregar la acción de caché al workflow. Esto permite evitar la ejecución de una nueva construcción en cada ejecución del flujo de trabajo, lo que ahorra tiempo y recursos. Sin embargo, es importante investigar cómo configurar correctamente la caché, especialmente cuando los trabajos se ejecutan para diferentes eventos, para garantizar un funcionamiento eficiente.
 
 2. **¿Es posible desplegar automáticamente el artefacto guardado en Packages con Github Actions?**
-Si, ya agregue un ejemplo de parte de como seria en el serviocio de Elastic BeansTalk.
+Sí, es posible desplegar automáticamente un artefacto almacenado en GitHub Packages utilizando GitHub Actions. En esta practica solo agregue un paso para hacer esto.
 
 3. **¿Qué modificaciones consideras que se tendrían que realizar a los workflows para trabajar con imágenes de contenedores, siguiendo las mejores prácticas que conozcas?**
+Crear un Dockerfile en el directorio del proyecto para definir la construcción de la imagen, utilizar un usuario no privilegiado en el contenedor en lugar de "root" para mejorar la seguridad, escanear la imagen en busca de vulnerabilidades de seguridad utilizando algunas herramientas para este proposito, configurar un trabajo adicional en el flujo de trabajo para compilar la imagen del contenedor y almacenar la imagen en un registro de contenedores.
+
 4. **¿Qué pasos y/o herramientas utilizarías para entender las plantillas de Cloudformation y evaluar que ajustes se tendrían que realizar a la etapa de despliegue?**
-jhkdss
+* Comenzaría revisando la documentación y el repositorio donde se encuentran las plantillas de CloudFormation para obtener contexto de su funcionamiento. 
+* Utilizaría AWS CloudFormation Designer, para visualizar y editar  plantillas para facilitar la comprensión de la estructura y recursos.
+* Analizaría los requisitos específicos del despliegue, como la red, los servicios, el acceso, etc. Esto para ayudarme a identificar los ajustes necesarios en las plantillas.
+* Realizaría las ediciones necesarias en las plantillas de CloudFormation para cumplir con los requisitos identificados
+* Antes de la implementación, realizaría pruebas de las plantillas para asegurarme de que funcionen correctamente y sin errores.
