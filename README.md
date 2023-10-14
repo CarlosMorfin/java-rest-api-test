@@ -26,4 +26,4 @@ Si, ya agregue un ejemplo de parte de como seria en el serviocio de Elastic Bean
 
 3. **¿Qué modificaciones consideras que se tendrían que realizar a los workflows para trabajar con imágenes de contenedores, siguiendo las mejores prácticas que conozcas?**
 4. **¿Qué pasos y/o herramientas utilizarías para entender las plantillas de Cloudformation y evaluar que ajustes se tendrían que realizar a la etapa de despliegue?**
-jhkds
+jhkdss
