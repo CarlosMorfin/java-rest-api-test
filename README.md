@@ -19,7 +19,11 @@
 ### Preguntas de la practica y sus respuestas:
 
 1. **¿Consideras útil agrega la acción de caché al workflow?**
-No, ya que los jobs se ejecutan en eventos diferentes y
+Considero que no, ya que en este caso en los dos jobs es necesario ejecutar las pruebas y es necesario el build pero los jobs se ejecutan en eventos diferentes y tendria que tener en cache los builds por el rango de tienpo entre el pull request y el merge.
+
 2. **¿Es posible desplegar automáticamente el artefacto guardado en Packages con Github Actions?**
+Si, ya agregue un ejemplo de parte de como seria en el serviocio de Elastic BeansTalk.
+
 3. **¿Qué modificaciones consideras que se tendrían que realizar a los workflows para trabajar con imágenes de contenedores, siguiendo las mejores prácticas que conozcas?**
 4. **¿Qué pasos y/o herramientas utilizarías para entender las plantillas de Cloudformation y evaluar que ajustes se tendrían que realizar a la etapa de despliegue?**
+jhkds
